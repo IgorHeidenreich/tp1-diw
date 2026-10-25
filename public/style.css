@@ -1,0 +1,620 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #222;
+  line-height: 1.5;
+  background: linear-gradient(135deg, #1c1b2e, #2f2a4a);
+  min-height: 100vh;
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  background-color: #1c1b2e;
+  color: white;
+  padding: 20px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.cabecalho .logo { margin: 0; font-size: 20px; font-weight: bold; }
+
+.navbar-metalcore { background-color: #1c1b2e; }
+.navbar-metalcore .navbar-brand { font-weight: bold; }
+
+.menu ul { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; }
+.menu ul li a { color: white; text-decoration: none; font-weight: 500; }
+.menu ul li a:hover { text-decoration: underline; }
+
+.conteudo-principal {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #fdfdfd;
+}
+
+.intro-era { margin-bottom: 40px; }
+.intro-era h1 { font-size: 26px; margin-bottom: 10px; }
+.intro-era p { color: #444; max-width: 700px; }
+
+.imagem-hero { object-fit: cover; }
+.hero-texto h1 { margin-top: 0; font-size: 28px; }
+
+.secao-busca { background-color: #f2f2f5; padding: 25px; border-radius: 12px; }
+.botao-busca { background-color: #2f2a4a; color: white; font-weight: bold; }
+.botao-busca:hover { background-color: #463d73; color: white; }
+
+.secao-albuns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.album-card, .era-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  position: relative;
+}
+
+.capa, .era-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.album-card .selo-ano {
+  position: absolute;
+  top: 25px; right: 25px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.album-card h3, .era-card h3 { margin: 5px 0; font-size: 18px; color: #1c1b2e; }
+.album-card h3 + p { color: #6a6a75; margin: 0; }
+
+.botao-era {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 18px;
+  background-color: #2f2a4a;
+  color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+}
+.botao-era:hover { background-color: #463d73; color: #fff; }
+
+.rodape { background-color: #1c1b2e; color: white; text-align: center; padding: 20px; margin-top: 60px; }
+.rodape p { margin: 0; }
+.rodape-links { margin-top: 10px; }
+.rodape-links a { color: white; text-decoration: none; margin: 0 10px; }
+.rodape-links a:hover { text-decoration: underline; }
+
+/* ===================== ADIÇÕES ===================== */
+
+.secao-titulo {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #1c1b2e;
+  margin: 0 0 20px;
+  padding-left: 14px;
+  border-left: 5px solid #b3212a;
+}
+
+.secao-destaques { margin-top: 10px; }
+
+#sliderDestaques {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  background-color: #1c1b2e;
+}
+
+.slide-conteudo { position: relative; height: 480px; background-color: #1c1b2e; }
+.slide-imagem { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.75; }
+.slide-texto {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 60px 40px 40px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 25%, transparent 100%);
+  color: #fff;
+}
+.slide-nome { font-size: 32px; margin: 0 0 10px; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+.slide-descricao { margin: 0 0 18px; max-width: 640px; color: #e0e0e0; font-size: 15px; line-height: 1.5; }
+
+.botao-destaque {
+  background-color: #b3212a;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  transition: background-color .2s, transform .2s;
+}
+.botao-destaque:hover { background-color: #e0303a; color: #fff; transform: translateY(-1px); }
+
+#sliderDestaques .carousel-indicators [data-bs-target] {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background-color: #b3212a;
+  border: none;
+  margin: 0 5px;
+  opacity: .5;
+  transition: opacity .2s;
+}
+#sliderDestaques .carousel-indicators .active { opacity: 1; }
+
+.banda-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform .25s, box-shadow .25s;
+  height: 100%;
+}
+.banda-card:hover { transform: translateY(-5px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18); }
+.banda-card .card-img-top { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background-color: #1c1b2e; }
+.banda-card .card-body { padding: 18px; display: flex; flex-direction: column; }
+.banda-card .card-title { color: #1c1b2e; margin-bottom: 8px; font-weight: 700; }
+.banda-card .card-text { color: #555; font-size: 14px; line-height: 1.5; margin-bottom: 14px; }
+
+.banda-hero {
+  background-color: #f5f5f8;
+  border-radius: 14px;
+  padding: 30px;
+  border-left: 6px solid #b3212a;
+  margin-top: 10px;
+}
+.banda-imagem {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: #1c1b2e;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.banda-tag {
+  display: inline-block;
+  background-color: #b3212a;
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.banda-nome {
+  font-size: 38px;
+  line-height: 1.1;
+  color: #1c1b2e;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 800;
+}
+.banda-descricao { color: #444; margin-bottom: 22px; font-size: 16px; line-height: 1.55; }
+
+.banda-info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.info-item {
+  background-color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 3px solid #b3212a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.info-item-full { grid-column: 1 / -1; }
+.info-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8a8a95;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.info-valor { color: #1c1b2e; font-weight: 700; font-size: 15px; line-height: 1.4; }
+
+.banda-historia { background-color: #f5f5f8; padding: 28px 30px; border-radius: 14px; }
+.banda-historia h2 { color: #1c1b2e; margin: 0 0 14px; font-size: 22px; text-transform: uppercase; letter-spacing: 1px; }
+.banda-historia p { color: #444; line-height: 1.7; margin: 0; font-size: 15px; }
+
+.banda-albuns h2 {
+  color: #1c1b2e;
+  margin: 0 0 20px;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-left: 14px;
+  border-left: 5px solid #b3212a;
+}
+
+.album-detalhe-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform .25s, box-shadow .25s;
+  height: 100%;
+}
+.album-detalhe-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
+.album-detalhe-card .card-img-top { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background-color: #1c1b2e; }
+.album-detalhe-card .card-body { padding: 18px; }
+.album-ano {
+  display: inline-block;
+  background-color: #1c1b2e;
+  color: #fff;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.album-detalhe-card .card-title { color: #1c1b2e; margin: 0 0 8px; font-weight: 700; }
+.album-detalhe-card .card-text { color: #555; font-size: 14px; line-height: 1.5; margin: 0; }
+
+.erro-container { text-align: center; padding: 70px 20px; }
+.erro-container h1 { color: #1c1b2e; margin-bottom: 12px; font-size: 28px; }
+.erro-container p { color: #666; margin-bottom: 24px; }
+
+.sem-albuns {
+  color: #666;
+  text-align: center;
+  padding: 30px;
+  background-color: #f5f5f8;
+  border-radius: 10px;
+  font-style: italic;
+  margin: 0;
+}
+
+.rodape {
+  background-color: #1c1b2e;
+  color: #fff;
+  padding: 45px 20px 25px;
+  margin-top: 70px;
+  text-align: left;
+}
+.rodape .container { max-width: 1140px; }
+.rodape-titulo {
+  font-size: 20px;
+  margin: 0 0 25px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #b3212a;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #fff;
+}
+.rodape h4 { color: #b3212a; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 10px; font-weight: 700; }
+.rodape-aluno p, .rodape-autor p { margin: 0 0 4px; color: #ddd; font-size: 15px; }
+
+.autor-info { display: flex; align-items: center; gap: 15px; }
+.autor-avatar {
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  background-color: #b3212a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: 1px;
+}
+.autor-nome { font-weight: 700; color: #fff !important; }
+
+.rodape a { color: #ff6b6b; text-decoration: none; }
+.rodape a:hover { text-decoration: underline; color: #ff8888; }
+.rodape-links a { display: inline-block; margin-right: 12px; font-weight: 600; }
+
+.rodape-creditos {
+  text-align: center;
+  margin-top: 30px !important;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #888 !important;
+  font-size: 13px !important;
+}
+
+/* ===================== RESPONSIVIDADE ===================== */
+@media (max-width: 900px) {
+  .secao-albuns { grid-template-columns: repeat(2, 1fr); }
+  .slide-conteudo { height: 400px; }
+  .banda-nome { font-size: 30px; }
+}
+
+@media (max-width: 768px) {
+  .slide-conteudo { height: 380px; }
+  .slide-texto { padding: 45px 22px 25px; }
+  .slide-nome { font-size: 22px; }
+  .slide-descricao { font-size: 14px; margin-bottom: 14px; }
+  .botao-destaque { padding: 8px 20px; font-size: 14px; }
+
+  .banda-hero { padding: 22px; }
+  .banda-nome { font-size: 26px; }
+  .banda-info-grid { grid-template-columns: 1fr; }
+  .banda-historia { padding: 22px; }
+  .banda-historia h2,
+  .banda-albuns h2 { font-size: 19px; }
+
+  .rodape { padding: 35px 15px 20px; text-align: center; }
+  .autor-info { justify-content: center; }
+  .rodape-titulo { display: block; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .cabecalho { flex-direction: column; text-align: center; }
+  .menu ul { flex-wrap: wrap; justify-content: center; gap: 15px; }
+  .secao-albuns { grid-template-columns: 1fr; }
+  .conteudo-principal { padding: 25px 15px; }
+  .secao-titulo { font-size: 19px; }
+}
+
+@media (max-width: 480px) {
+  .slide-conteudo { height: 320px; }
+  .slide-nome { font-size: 18px; }
+  .slide-descricao { font-size: 13px; }
+  .banda-nome { font-size: 22px; }
+  .banda-descricao { font-size: 14px; }
+  .info-valor { font-size: 14px; }
+}
+
+/* =========================================================
+   ADIÇÕES — Blocos de Biografia, Estilo e Principais Álbuns
+   ========================================================= */
+
+/* Cabeçalho padronizado dos blocos textuais (Biografia / Estilo / Álbuns) */
+.bloco-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.bloco-header::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 26px;
+  background-color: #b3212a;
+  border-radius: 3px;
+}
+
+.bloco-header h2 {
+  margin: 0;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #1c1b2e;
+  font-weight: 800;
+}
+
+/* --- Bloco Biografia --- */
+.banda-biografia {
+  background-color: #f5f5f8;
+  border-radius: 14px;
+  padding: 32px 34px;
+  border-left: 6px solid #1c1b2e;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.banda-biografia p {
+  color: #333;
+  font-size: 15.5px;
+  line-height: 1.85;
+  margin: 0;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* --- Bloco Estilo Sonoro --- */
+.banda-estilo {
+  background-color: #1c1b2e;
+  color: #e6e6ee;
+  border-radius: 14px;
+  padding: 32px 34px;
+  border-left: 6px solid #b3212a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.banda-estilo .bloco-header h2 {
+  color: #fff;
+}
+
+.banda-estilo p {
+  color: #dcdce6;
+  font-size: 15.5px;
+  line-height: 1.85;
+  margin: 0;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* --- Bloco Principais Álbuns --- */
+.banda-albuns {
+  margin-top: 10px;
+}
+
+.banda-albuns .bloco-header {
+  margin-bottom: 22px;
+}
+
+/* Responsividade dos blocos textuais */
+@media (max-width: 768px) {
+  .banda-biografia,
+  .banda-estilo {
+    padding: 22px 20px;
+  }
+
+  .banda-biografia p,
+  .banda-estilo p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    text-align: left;
+    hyphens: none;
+  }
+
+  .bloco-header h2 { font-size: 18px; }
+  .bloco-header::before { height: 22px; }
+}
+
+@media (max-width: 480px) {
+  .banda-biografia,
+  .banda-estilo {
+    padding: 18px 16px;
+    border-left-width: 4px;
+  }
+
+  .banda-biografia p,
+  .banda-estilo p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .bloco-header h2 { font-size: 16px; }
+}
+
+/* =========================================================
+   AJUSTES INCREMENTAIS
+   1) Botão "Voltar para a página principal"
+   2) Enquadramento das fotos de banda (cards, slider, detalhes)
+   ========================================================= */
+
+/* ---------- 1) Botão de voltar nas páginas de época ---------- */
+.botao-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background-color: #b3212a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 22px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  transition: background-color .2s, transform .2s, box-shadow .2s;
+  box-shadow: 0 3px 10px rgba(179, 33, 42, 0.35);
+}
+
+.botao-voltar:hover,
+.botao-voltar:focus-visible {
+  background-color: #e0303a;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(179, 33, 42, 0.5);
+  outline: none;
+}
+
+.botao-voltar:active {
+  transform: translateY(0);
+}
+
+/* ---------- 2) Enquadramento das fotos de banda ---------- */
+
+/* Slider — as fotos panorâmicas das bandas não devem ser cortadas
+   nos lados; ancoramos o foco um pouco acima do centro para
+   preservar rostos/troncos. */
+.slide-imagem {
+  object-position: center 25%;
+}
+
+/* Cards da home — proporção 4:3 mostra a banda inteira em vez de
+   cortar as laterais do grupo (antes era 1:1). */
+.banda-card .card-img-top {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 20%;
+  background-color: #1c1b2e;
+}
+
+/* Página de detalhes — usar `contain` para exibir a foto COMPLETA
+   da banda (sem cortes). O fundo escuro da paleta preenche as
+   eventuais sobras, mantendo a identidade visual coesa. */
+.banda-imagem {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  object-position: center;
+  background-color: #1c1b2e;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Capas de álbum continuam quadradas e com `cover` — é o formato
+   natural das capas. Reforçamos aqui só para deixar explícito que
+   não foram alteradas. (Nenhuma mudança de comportamento.) */
+.capa,
+.era-card img,
+.album-detalhe-card .card-img-top {
+  object-position: center;
+}
+
+/* ---------- Responsividade desses ajustes ---------- */
+@media (max-width: 900px) {
+  .banda-imagem {
+    aspect-ratio: 16 / 10;
+    object-position: center 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide-imagem {
+    object-position: center 20%;
+  }
+
+  .banda-card .card-img-top {
+    aspect-ratio: 16 / 10;
+    object-position: center 20%;
+  }
+
+  .banda-imagem {
+    aspect-ratio: 16 / 10;
+    object-position: center 25%;
+  }
+}
+
+@media (max-width: 600px) {
+  .cabecalho {
+    padding: 16px 20px;
+  }
+
+  .botao-voltar {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-imagem {
+    object-position: center 20%;
+  }
+
+  .banda-card .card-img-top,
+  .banda-imagem {
+    aspect-ratio: 4 / 3;
+    object-position: center 20%;
+  }
+}
